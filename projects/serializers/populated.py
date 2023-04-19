@@ -1,5 +1,8 @@
 from .common import ProjectSerializer
-from developers.serializers.common import DeveloperSerializer
+from skills.serializers.common import SkillSerializer
+from comments.serializers.common import CommentSerializer
 
 class PopulatedProjectSerializer(ProjectSerializer):
-    developers = DeveloperSerializer(many=True)
+    skills = SkillSerializer(many=True)
+    comments = CommentSerializer(many=True)
+

@@ -7,13 +7,13 @@ from django.db import IntegrityError
 
 from .models import Developer
 from .serializers.common import DeveloperSerializer
-from .serializers.populated import PopulatedDeveloperSerializer
+# from .serializers.populated import PopulatedDeveloperSerializer
 
 
 class DeveloperListView(APIView):
     def get(self, _request):
         developers = Developer.objects.all()
-        serialized_developers = PopulatedDeveloperSerializer(
+        serialized_developers = DeveloperSerializer(
             developers, many=True)
         return Response(serialized_developers.data, status=status.HTTP_200_OK)
 
@@ -39,7 +39,7 @@ class DeveloperDetailView(APIView):
 
     def get(self, _request, pk):
         album = self.get_developers(pk=pk)
-        serialized_album = PopulatedDeveloperSerializer(album)
+        serialized_album = DeveloperSerializer(album)
         return Response(serialized_album.data, status=status.HTTP_200_OK)
 
     def put(self, reguest, pk):
