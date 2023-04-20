@@ -23,4 +23,5 @@ urlpatterns = [
     path('skills/',include('skills.urls')),
     path('projects/',include('projects.urls')),
     path('comments/',include('comments.urls')),
+    path('auth/',include('jwt_auth.urls')),
 ]

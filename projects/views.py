@@ -3,16 +3,22 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+
 from django.db import IntegrityError
+
 from .models import Project
 from .serializers.populated import PopulatedProjectSerializer
 from .serializers.common import ProjectSerializer
 
 
 class ProjectListView(APIView):
+    
+    permission_classes = (IsAuthenticatedOrReadOnly, )#This line of code defines a tuple named permission_classes that contains a single permission class IsAuthenticatedOrReadOnly.In Django REST Framework (DRF), permissions are used to control access to views and APIs. The IsAuthenticatedOrReadOnly class is a built-in permission class provided by DRF that allows authenticated users to perform any HTTP method (GET, POST, PUT, DELETE, etc.) on the view or API, while unauthenticated users are only allowed to perform safe methods (GET, HEAD, OPTIONS).
+
     def get(self, _request):
         projects = Project.objects.all()
-        serialized_project =PopulatedProjectSerializer(projects, many=True)#Setting many=True on a serializer indicates that you want to serialize a collection of objects, typically a queryset or a list of objects.
+        serialized_project =ProjectSerializer(projects, many=True)#Setting many=True on a serializer indicates that you want to serialize a collection of objects, typically a queryset or a list of objects.
         return Response({"detail":f" All projecs data have been fetched", "data":serialized_project.data}, status=status.HTTP_200_OK)
     
     def post(self,request):
@@ -26,11 +32,15 @@ class ProjectListView(APIView):
         except:
             return Response({"detail":"unprocessable error"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 class projectDetailView(APIView):
+
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+
     def get_project(self, pk):
         try:
             return Project.objects.get(pk=pk)
         except Project.DoesNotExist:
             raise NotFound(detail= f"Cant find that project with that pk-{pk}")
+        
     def get(self, _request, pk):
         project = self.get_project(pk=pk)
         serialized_project = PopulatedProjectSerializer(project)

@@ -1,0 +1,16 @@
+[
+{
+  "model": "projects.project",
+  "pk": 1,
+  "fields": {
+    "title": "tetris",
+    "description": "it is a retro game",
+    "source_link": "https://github.com/fsmali?tab=repositories",
+    "created_at": "2023-04-20T13:34:42.935Z",
+    "developer": 1,
+    "skills": [
+      1
+    ]
+  }
+}
+]

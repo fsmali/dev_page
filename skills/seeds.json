@@ -1,0 +1,9 @@
+[
+{
+  "model": "skills.skill",
+  "pk": 1,
+  "fields": {
+    "skill": "python"
+  }
+}
+]
