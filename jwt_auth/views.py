@@ -21,6 +21,26 @@ class RegisterView(APIView):
             return Response({'message': "registration successful"}, status=status.HTTP_201_CREATED)
 
         return Response(user_to_create.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+class LoginView(APIView):
+    def post(self, request):
+        email = request.data.get('email')
+        password = request.data.get('password')
+        try:
+            user_to_login = User.objects.get(email=email)
+        except User.DoesNotExist:
+            raise PermissionDenied(detail='no user found with that email. please register')
+        if not user_to_login.check_password(password):
+            raise PermissionDenied(detail='invalid Credentials')
+        
+        dt =datetime.now() +timedelta(days=7)
+        token = jwt.encode(
+            {'sub':user_to_login.id,'exp':int(dt.strftime('%s'))},
+            settings.SECRET_KEY,
+            algorithm='HS256'
+        )
+        return Response({ 'token': token, "message": f"welcome back {user_to_login.username}"})
+
+
 
 
 
