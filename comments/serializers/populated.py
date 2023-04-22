@@ -1,5 +1,6 @@
+
+from jwt_auth.serializers.common import UserSerializer
 from .common import CommentSerializer
-from projects.serializers.common import ProjectSerializer
 
 class PopulatedCommentSerializer(CommentSerializer):
-    projects =ProjectSerializer()
+    owner = UserSerializer()

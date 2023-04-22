@@ -12,6 +12,9 @@ class Project(models.Model):
     #The first model, "Developer. The second model, which this code snippet is a part of, has a field called "developer" that is a foreign key to the "Developer" model. The foreign key relationship is defined using the ForeignKey method from Django's models module
     #The related_name parameter specifies the name of a reverse relation from the "Developer" model back to this model. In this case, it is set to "projects," so each "Developer" object will have a related manager called "projects" that can be used to access all the "Project" objects that have a foreign key pointing to that "Developer" object.
     #The on_delete parameter specifies what should happen when the related "Developer" object is deleted. In this case, it is set to CASCADE, which means that when a "Developer" object is deleted, all the "Project" objects that have a foreign key pointing to that "Developer" object will also be deleted.
+    owner = models.ForeignKey('jwt_auth.User', related_name='projects', on_delete=models.CASCADE)
+    #In this case, the foreign key is defined on a model that has a relationship with the jwt_auth.User model. The jwt_auth.User model is specified as a string to avoid circular import errors.
+    #The related_name argument is used to specify the name of the reverse relation from the related model back to the model with the foreign key. In this case, it is named 'projects', so you can access the related projects from a jwt_auth.User instance by calling user.projects.all().
 
     def __str__(self):
         return f"{self.title}"

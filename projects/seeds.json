@@ -6,8 +6,24 @@
     "title": "tetris",
     "description": "it is a retro game",
     "source_link": "https://github.com/fsmali?tab=repositories",
-    "created_at": "2023-04-20T13:34:42.935Z",
+    "created_at": "2023-04-20T21:58:36.026Z",
     "developer": 1,
+    "owner": 1,
+    "skills": [
+      1
+    ]
+  }
+},
+{
+  "model": "projects.project",
+  "pk": 2,
+  "fields": {
+    "title": "tetris",
+    "description": "it is a retro game",
+    "source_link": "https://github.com/fsmali?tab=repositories",
+    "created_at": "2023-04-21T07:29:08.212Z",
+    "developer": 1,
+    "owner": 2,
     "skills": [
       1
     ]

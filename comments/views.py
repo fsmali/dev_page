@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.request import  Request
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.exceptions import PermissionDenied
 
 from django.db import IntegrityError
 
@@ -37,25 +38,35 @@ class CommentDetailView(APIView):
             return Comment.objects.get(pk=pk)
         except Comment.DoesNotExist:
             raise NotFound(detail=f"the comment with the pk{pk} has not found")
-    # def get(self, _request, pk):
-    #     comment = self.get_comment(pk=pk)
-    #     serialized_comment = PopulatedCommentSerializer(comment)
-    #     return Response({"detail":f"the comment with the id-{pk} has been found","data":serialized_comment.data},status=status.HTTP_200_OK)
-    # def put(self,request, pk):
-    #     commnet_to_update = self.get_comment(pk=pk)
-    #     updated_comment = CommentSerializer(commnet_to_update, data=request.data)
-    #     try:
-    #         updated_comment.is_valid()
-    #         updated_comment.save()
-    #         return Response({"detail":f"the comment with the id-{pk} has been updated","data":updated_comment.data},status=status.HTTP_202_ACCEPTED)  
-    #     except(AssertionError, IntegrityError) as e:
-    #         return Response({"detail": str(e)}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
-    #     except:
-    #         return Response({"detail":"unprocessable entity"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+    def get(self, _request, pk):
+        comment = self.get_comment(pk=pk)
+        serialized_comment = PopulatedCommentSerializer(comment)
+        return Response({"detail":f"the comment with the id-{pk} has been found","data":serialized_comment.data},status=status.HTTP_200_OK)
+    def put(self,request, pk):
+        request.data["owner"] =request.user.id
+        try:
+            commnet_to_update = self.get_comment(pk=pk)
+            if commnet_to_update.owner != request.user:#The problem with the code if updated_comment.owner != request.user: raise PermissionDenied() is that updated_comment is an instance of CommentSerializer, not an instance of a comment object. Therefore, it does not have an owner attribute. Instead, you should check the owner of the comment object that the serializer is serializing.
+              raise PermissionDenied()
+            updated_comment = CommentSerializer(commnet_to_update, data=request.data)
+            
+        
+            updated_comment.is_valid()
+            updated_comment.save()
+            return Response({"detail":f"the comment with the id-{pk} has been updated","data":updated_comment.data},status=status.HTTP_202_ACCEPTED)  
+        except(AssertionError, IntegrityError) as e:
+            return Response({"detail": str(e)}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+        except:
+            return Response({"detail":"unprocessable entity"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+        
 
-    def delete(self,_request, pk):
-        # permission_classes =(IsAuthenticated, )
-        comment_to_delete = self.get_comment(pk=pk)
-        comment_to_delete.delete()
-        return Response({"detail":f"the comment with the id-{pk} has been deleted"},status=status.HTTP_204_NO_CONTENT)    
+    def delete(self, request, pk):
+        try:
+            comment_to_delete = self.get_comment(pk=pk)
+            if comment_to_delete.owner != request.user:
+              raise PermissionDenied()
+            comment_to_delete.delete()
+            return Response({"detail":f"the comment with the id-{pk} has been deleted"},status=status.HTTP_204_NO_CONTENT)   
+        except Comment.DoesNotExist:
+            raise NotFound(detail="comment not found")
 

@@ -22,6 +22,7 @@ class ProjectListView(APIView):
         return Response({"detail":f" All projecs data have been fetched", "data":serialized_project.data}, status=status.HTTP_200_OK)
     
     def post(self,request):
+        request.data["owner"] = request.user.id
         porject_to_create = ProjectSerializer(data=request.data)
         try:
             porject_to_create.is_valid()

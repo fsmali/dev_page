@@ -1,0 +1,40 @@
+[
+{
+  "model": "jwt_auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$6o1zmab8Yke1KSF9vcIt0l$yhW4UZPB1RL5BShgNPtO6/M6pjiacu4gDSxS0Ni+59E=",
+    "last_login": "2023-04-20T21:57:20Z",
+    "is_superuser": true,
+    "username": "admin",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-04-20T21:57:00Z",
+    "email": "fsmaccounting@hotmail.com",
+    "first_name": "Ali",
+    "last_name": "Dede",
+    "profile_img": "img",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$Ig1ANUdJ6fv2ZtURJWEFlp$NsqIlxSGXx9ax+W5eA91pUmGAlyaPUoGRKjcTrZl/R4=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "veli",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-04-20T21:59:28.849Z",
+    "email": "ali@b.com",
+    "first_name": "veli",
+    "last_name": "dede",
+    "profile_img": "img",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
