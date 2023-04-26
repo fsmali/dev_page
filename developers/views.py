@@ -15,7 +15,7 @@ class DeveloperListView(APIView):
         developers = Developer.objects.all()
         serialized_developers = PopulatedDeveloperSerializer(
             developers, many=True)
-        return Response({"detail":"all developers have been fetched","data":serialized_developers.data}, status=status.HTTP_200_OK)
+        return Response(serialized_developers.data, status=status.HTTP_200_OK)
 
     def post(self, request):
         developers_to_add = DeveloperSerializer(data=request.data)
@@ -23,7 +23,7 @@ class DeveloperListView(APIView):
             developers_to_add.is_valid()
             developers_to_add.save()
 
-            return Response({"detail":"developer has been cretated","data":developers_to_add.data}, status=status.HTTP_201_CREATED)
+            return Response(developers_to_add.data, status=status.HTTP_201_CREATED)
         except (IntegrityError, AssertionError) as e:
             return Response({"detail": str(e)}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
         except:
@@ -39,8 +39,8 @@ class DeveloperDetailView(APIView):
 
     def get(self, _request, pk):
         developer = self.get_developers(pk=pk)
-        serialized_developer = DeveloperSerializer(developer)
-        return Response({"detail":f"developer with the id-{pk} have been fetched","data":serialized_developer.data}, status=status.HTTP_200_OK)
+        serialized_developer = PopulatedDeveloperSerializer(developer)
+        return Response(serialized_developer.data, status=status.HTTP_200_OK)
 
     def put(self, reguest, pk):
         update_to_developer = self.get_developers(pk=pk)
@@ -50,7 +50,7 @@ class DeveloperDetailView(APIView):
         try:
             updated_developer.is_valid()
             updated_developer.save()
-            return Response({"detail":f"developer with the if-{pk} have been updated","data":updated_developer.data}, status=status.HTTP_202_ACCEPTED)
+            return Response(updated_developer.data, status=status.HTTP_202_ACCEPTED)
         except (AssertionError, IntegrityError) as e:
             return Response({"detail": str(e)}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
         except:

@@ -19,10 +19,10 @@ class UserSerializer(serializers.ModelSerializer):
         try:
             password_validation.validate_password(password=password)
         except ValidationError as err:
-            raise ValidationError({'password'}, err.message)
+            raise ValidationError({'password'}, err)
         data['password'] = make_password(password)
         return data
     
     class Meta:
         model = User
-        fields = ("username",  "email", "first_name", "last_name",'password_confirmation','password','id')
+        fields = ( "first_name", "last_name","username", "email", 'password','password_confirmation')

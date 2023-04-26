@@ -18,7 +18,7 @@ class ProjectListView(APIView):
 
     def get(self, _request):
         projects = Project.objects.all()
-        serialized_project =ProjectSerializer(projects, many=True)#Setting many=True on a serializer indicates that you want to serialize a collection of objects, typically a queryset or a list of objects.
+        serialized_project =PopulatedProjectSerializer(projects, many=True)#Setting many=True on a serializer indicates that you want to serialize a collection of objects, typically a queryset or a list of objects.
         return Response({"detail":f" All projecs data have been fetched", "data":serialized_project.data}, status=status.HTTP_200_OK)
     
     def post(self,request):

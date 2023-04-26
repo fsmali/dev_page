@@ -5,5 +5,54 @@
   "fields": {
     "skill": "python"
   }
+},
+{
+  "model": "skills.skill",
+  "pk": 2,
+  "fields": {
+    "skill": "js"
+  }
+},
+{
+  "model": "skills.skill",
+  "pk": 3,
+  "fields": {
+    "skill": "css"
+  }
+},
+{
+  "model": "skills.skill",
+  "pk": 4,
+  "fields": {
+    "skill": "html"
+  }
+},
+{
+  "model": "skills.skill",
+  "pk": 5,
+  "fields": {
+    "skill": "node.js"
+  }
+},
+{
+  "model": "skills.skill",
+  "pk": 6,
+  "fields": {
+    "skill": "React"
+  }
+},
+{
+  "model": "skills.skill",
+  "pk": 7,
+  "fields": {
+    "skill": "Git Hub"
+  }
+},
+{
+  "model": "skills.skill",
+  "pk": 8,
+  "fields": {
+    "skill": "mongoose"
+  }
 }
 ]

@@ -3,11 +3,70 @@
   "model": "developers.developer",
   "pk": 1,
   "fields": {
-    "title": "junior software developer",
-    "first_name": "Ali",
-    "last_name": "Dede",
-    "email": "fsmaccounting@hotmail.com",
-    "img": "img"
+    "title": "Senior Software Engineer-Lead Instructor",
+    "first_name": "Tristan",
+    "last_name": "Hall",
+    "email": "tristan.hall@generalassemb.ly",
+    "based_in": "London",
+    "country": "United Kingdom",
+    "img": "https://ca.slack-edge.com/T0351JZQ0-U024NFRQ1A8-2e964ed1abb9-512",
+    "facebook": "https://1000logos.net/wp-content/uploads/2021/04/Facebook-logo-768x480.png",
+    "instagram": "https://images.template.net/76792/Free-Instagram-Icon-Vector-1.jpg",
+    "git_hub": "https://github.githubassets.com/images/modules/open_graph/github-logo.png",
+    "linkden": "https://st4.depositphotos.com/1000417/41563/v/450/depositphotos_415634850-stock-illustration-linkedin-logo-vector-editorial-illustration.jpg",
+    "info": "\"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?\"",
+    "owner": 1,
+    "skills": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "project": [
+      1,
+      2,
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "developers.developer",
+  "pk": 2,
+  "fields": {
+    "title": "Junior Software Developer",
+    "first_name": "Adam",
+    "last_name": "Asmal",
+    "email": "asmaladam@gmail.com",
+    "based_in": "London",
+    "country": "United Kingdom\",",
+    "img": "https://http.cat/100",
+    "facebook": "https://1000logos.net/wp-content/uploads/2021/04/Facebook-logo-768x480.png",
+    "instagram": "\":  https://images.template.net/76792/Free-Instagram-Icon-Vector-1.jpg/",
+    "git_hub": "https://github.githubassets.com/images/modules/open_graph/github-logo.png/",
+    "linkden": "https://st4.depositphotos.com/1000417/41563/v/450/depositphotos_415634850-stock-illustration-linkedin-logo-vector-editorial-illustration.jpg",
+    "info": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
+    "owner": 1,
+    "skills": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "project": [
+      1,
+      2,
+      3,
+      4
+    ]
   }
 }
 ]

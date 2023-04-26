@@ -35,7 +35,7 @@ class SkillDetailView(APIView):
             raise NotFound(detail= f"the skill with the id-{pk} not found")
     def get(self, _request, pk):
         skill = self.get_skills(pk=pk)
-        serializied_skill = SkillSerializer(skill)
+        serializied_skill = PopulatedSkillSerializer(skill)
         return Response(serializied_skill.data, status=status.HTTP_200_OK)
     def put(self, request, pk):
         update_to_skill = self.get_skills(pk=pk)

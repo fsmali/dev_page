@@ -3,30 +3,40 @@
   "model": "projects.project",
   "pk": 1,
   "fields": {
-    "title": "tetris",
-    "description": "it is a retro game",
-    "source_link": "https://github.com/fsmali?tab=repositories",
-    "created_at": "2023-04-20T21:58:36.026Z",
-    "developer": 1,
-    "owner": 1,
-    "skills": [
-      1
-    ]
+    "title": "Project-1",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill",
+    "source_link": "https://github.com/",
+    "created_at": "2023-04-25T16:34:01.125Z"
   }
 },
 {
   "model": "projects.project",
   "pk": 2,
   "fields": {
-    "title": "tetris",
-    "description": "it is a retro game",
-    "source_link": "https://github.com/fsmali?tab=repositories",
-    "created_at": "2023-04-21T07:29:08.212Z",
-    "developer": 1,
-    "owner": 2,
-    "skills": [
-      1
-    ]
+    "title": "Project-2",
+    "description": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill",
+    "source_link": "https://github.com/",
+    "created_at": "2023-04-25T16:35:31.479Z"
+  }
+},
+{
+  "model": "projects.project",
+  "pk": 3,
+  "fields": {
+    "title": "Project-3",
+    "description": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill",
+    "source_link": "https://github.com/",
+    "created_at": "2023-04-25T16:35:55.034Z"
+  }
+},
+{
+  "model": "projects.project",
+  "pk": 4,
+  "fields": {
+    "title": "Project-4",
+    "description": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill",
+    "source_link": "https://github.com/",
+    "created_at": "2023-04-25T16:36:12.109Z"
   }
 }
 ]
