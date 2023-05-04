@@ -2,10 +2,10 @@ from django.db import models
 
 
 class Project(models.Model):
-    title = models.CharField(max_length=50)
-    description = models.TextField(max_length=300)
+    project_name = models.CharField(max_length=50)
+    description = models.TextField(max_length=5000)
     source_link = models.CharField(max_length=300)
-    created_at = models.DateTimeField(auto_now_add=True)
+    # created_at = models.DateTimeField(auto_now_add=True)
     # skills = models.ManyToManyField('skills.Skill', related_name="projects")
     # This line of code is defining a field named description in a Django model. The field is of type TextField, which allows for longer text strings to be stored compared to CharField.The null=True argument means that the field can be left empty, i.e., it can be NULL in the database.
     # developer = models.ForeignKey('developers.Developer', related_name="projects", on_delete=models.CASCADE)
@@ -17,8 +17,4 @@ class Project(models.Model):
     #The related_name argument is used to specify the name of the reverse relation from the related model back to the model with the foreign key. In this case, it is named 'projects', so you can access the related projects from a jwt_auth.User instance by calling user.projects.all().
 
     def __str__(self):
-        return f"{self.title}"
-
-
-
-
+        return f"{self.project_name}"

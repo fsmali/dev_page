@@ -8,6 +8,6 @@ from jwt_auth.serializers.common import UserSerializer
 
 class PopulatedDeveloperSerializer(DeveloperSerializer):
     project = ProjectSerializer(many=True)
-    skills = SkillSerializer(many=True)
+    skill = SkillSerializer(many=True)
     comments = PopulatedCommentSerializer(many=True)
-    owner = UserSerializer()
+    # owner = UserSerializer()

@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.exceptions import NotFound
 from django.db import IntegrityError
+from rest_framework.permissions import IsAuthenticated
 
 from .models import Developer
 from .serializers.common import DeveloperSerializer
@@ -11,13 +12,15 @@ from .serializers.populated import PopulatedDeveloperSerializer
 
 
 class DeveloperListView(APIView):
+    # permission_classes =(IsAuthenticated, )
     def get(self, _request):
         developers = Developer.objects.all()
-        serialized_developers = PopulatedDeveloperSerializer(
+        serialized_developers = DeveloperSerializer(
             developers, many=True)
         return Response(serialized_developers.data, status=status.HTTP_200_OK)
 
     def post(self, request):
+        request.data["owner"] =request.user.id# important as we dont need to put owner in the postman as we are creating new developer
         developers_to_add = DeveloperSerializer(data=request.data)
         try:
             developers_to_add.is_valid()
@@ -31,6 +34,7 @@ class DeveloperListView(APIView):
 
 
 class DeveloperDetailView(APIView):
+    permission_classes =(IsAuthenticated, )
     def get_developers(self, pk):
         try:
             return Developer.objects.get(pk=pk)
@@ -46,6 +50,9 @@ class DeveloperDetailView(APIView):
         update_to_developer = self.get_developers(pk=pk)
         updated_developer = DeveloperSerializer(
             update_to_developer, data=reguest.data)
+
+
+
 
         try:
             updated_developer.is_valid()

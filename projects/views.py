@@ -19,7 +19,7 @@ class ProjectListView(APIView):
     def get(self, _request):
         projects = Project.objects.all()
         serialized_project =PopulatedProjectSerializer(projects, many=True)#Setting many=True on a serializer indicates that you want to serialize a collection of objects, typically a queryset or a list of objects.
-        return Response({"detail":f" All projecs data have been fetched", "data":serialized_project.data}, status=status.HTTP_200_OK)
+        return Response(serialized_project.data, status=status.HTTP_200_OK)
     
     def post(self,request):
         request.data["owner"] = request.user.id
@@ -27,7 +27,7 @@ class ProjectListView(APIView):
         try:
             porject_to_create.is_valid()
             porject_to_create.save()
-            return Response({"detail":f" New project has been created", "data":porject_to_create.data}, status=status.HTTP_201_CREATED)
+            return Response(porject_to_create.data, status=status.HTTP_201_CREATED)
         except (AssertionError,IntegrityError) as e:
             return Response({"detail": str(e)}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
         except:
@@ -45,7 +45,7 @@ class projectDetailView(APIView):
     def get(self, _request, pk):
         project = self.get_project(pk=pk)
         serialized_project = PopulatedProjectSerializer(project)
-        return Response({"detail":f"the project with the id-{pk} has been fetched", "data":serialized_project.data}, status=status.HTTP_202_ACCEPTED)
+        return Response(serialized_project.data, status=status.HTTP_202_ACCEPTED)
     
     def put(self, request,  pk):
         project_to_updata = self.get_project(pk=pk)
@@ -53,7 +53,7 @@ class projectDetailView(APIView):
         try:
             updated_project.is_valid()
             updated_project.save()
-            return Response({"detail":f"the project with the id-{pk} has been updated", "data":updated_project.data}, status=status.HTTP_201_CREATED)
+            return Response(updated_project.data, status=status.HTTP_201_CREATED)
         except(AssertionError, IntegrityError) as e:
             return Response({"detail": str(e)}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
         except:

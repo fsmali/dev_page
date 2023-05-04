@@ -15,7 +15,7 @@ class SkillListView(APIView):
     def get(self, _request):
         skill = Skill.objects.all()
         serializied_skills = PopulatedSkillSerializer(skill, many=True)
-        return Response({"detail":f" All skills data have been fetched", "data":serializied_skills.data}, status=status.HTTP_200_OK)
+        return Response(serializied_skills.data, status=status.HTTP_200_OK)
 
     def post(self, request):
         skill_to_create = SkillSerializer(data=request.data)
